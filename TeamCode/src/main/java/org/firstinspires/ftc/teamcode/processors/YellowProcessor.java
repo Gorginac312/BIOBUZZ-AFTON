@@ -23,7 +23,6 @@ public class YellowProcessor implements VisionProcessor {
     private final Mat hsvImage = new Mat();
     private final Mat yellowMask = new Mat();
 
-
     // Latest result, readable from the OpMode
     private volatile double yellowPercentage = 0;
 
@@ -44,7 +43,7 @@ public class YellowProcessor implements VisionProcessor {
         Imgproc.cvtColor(frame, hsvImage, Imgproc.COLOR_RGB2HSV);
 
         // Define the HSV range for yellow
-        Scalar lowerYellow = new Scalar(20, 150, 100);
+        Scalar lowerYellow = new Scalar(20, 250, 100);
         Scalar upperYellow = new Scalar(35, 255, 255);
 
         // Create a mask of yellow pixels
@@ -61,8 +60,8 @@ public class YellowProcessor implements VisionProcessor {
                             frame,
                             contours,
                             -1,
-                            new Scalar(255, 0, 0),
-                            6);
+                            new Scalar(0, 255, 0),
+                            2);
         for(MatOfPoint contour : contours) {
                 contour.release();
         }

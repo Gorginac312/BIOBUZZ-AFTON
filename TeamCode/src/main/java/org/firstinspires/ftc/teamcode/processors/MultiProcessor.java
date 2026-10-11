@@ -12,6 +12,8 @@ import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibra
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.core.Size;
@@ -26,8 +28,14 @@ public class MultiProcessor implements VisionProcessor {
     private final Mat redMask = new Mat();
 
 
+
     // Latest result, readable from the OpMode
     private volatile double yellowPercentage = 0;
+
+    private volatile Point yellowCenter = null;
+    private volatile Point blueCenter = null;
+    private volatile Point redCenter = null;
+
 
     @Override
     public void init(int width, int height,
@@ -86,6 +94,12 @@ public class MultiProcessor implements VisionProcessor {
                 Imgproc.RETR_EXTERNAL,
                 Imgproc.CHAIN_APPROX_SIMPLE);
 
+        yellowCenter = findLargestCenter(frame, yellowContours, new Scalar(255, 0, 0));
+
+        blueCenter = findLargestCenter(frame, blueContours, new Scalar(0, 255, 0));
+
+        redCenter = findLargestCenter(frame, redContours, new Scalar(0, 0, 255));
+
         Imgproc.drawContours(
                 frame,
                 yellowContours,
@@ -104,6 +118,7 @@ public class MultiProcessor implements VisionProcessor {
                 -1,
                 new Scalar(0, 0, 255),
                 2);
+
 
         for(MatOfPoint contour : yellowContours) {
             contour.release();
@@ -145,5 +160,43 @@ public class MultiProcessor implements VisionProcessor {
                             float scaleCanvasDensity,
                             Object userContext) {
         // We'll add camera overlays later
+    }
+    private Point findLargestCenter(Mat frame, List<MatOfPoint> contours, Scalar color) {
+        MatOfPoint largestContour = null;
+        double largestArea = 150;
+        for(MatOfPoint contour : contours) {
+
+            double area = Imgproc.contourArea(contour);
+
+            if (area > largestArea) {
+                largestArea = area;
+                largestContour  = contour;
+            }
+
+        }
+        if(largestContour == null) {
+            return null;
+        }
+
+        Rect box = Imgproc.boundingRect(largestContour);
+
+        double centerX = box.x + box.width / 2.0;
+        double centerY = box.y + box.height / 2.0;
+
+        Point center = new Point(centerX, centerY);
+
+        Imgproc.rectangle(frame, box, color, 2);
+        Imgproc.circle(frame, center, 5, color, -1);
+
+        return center;
+    }
+    public Point getYellowCenter() {
+        return yellowCenter;
+    }
+    public Point getBlueCenter() {
+        return blueCenter;
+    }
+    public Point getRedCenter() {
+        return redCenter;
     }
 }
