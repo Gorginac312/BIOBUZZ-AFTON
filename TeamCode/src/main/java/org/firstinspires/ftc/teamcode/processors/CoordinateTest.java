@@ -1,12 +1,10 @@
-package org.firstinspires.ftc.teamcode.teleops;
-import org.firstinspires.ftc.teamcode.processors.CoordinateProcessor;
+package org.firstinspires.ftc.teamcode.processors;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.vision.VisionPortal;
 
-import org.firstinspires.ftc.teamcode.processors.YellowProcessor;
 import org.opencv.core.Point;
 
 @TeleOp(name = "Coordinate Test")
@@ -25,8 +23,8 @@ public class CoordinateTest extends LinearOpMode{
             while(opModeIsActive()) {
                 Point yellow = processor.getYellowCenter();
                 if(yellow != null) {
-                    telemetry.addData("Yellow X", yellow.x);
-                    telemetry.addData("Yellow Y", yellow.y);
+                    telemetry.addData("Error X", processor.getYellowError().x);
+                    telemetry.addData("Error Y", processor.getYellowError().y);
                 }
                 else{
                     telemetry.addLine("Yellow not detected");

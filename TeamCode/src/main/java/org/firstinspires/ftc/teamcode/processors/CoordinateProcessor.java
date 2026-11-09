@@ -17,6 +17,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.core.Size;
+import org.opencv.imgproc.Moments;
 
 public class CoordinateProcessor implements VisionProcessor {
 
@@ -164,6 +165,15 @@ public class CoordinateProcessor implements VisionProcessor {
         }
         if(largestContour == null) {
             return null;
+        }
+        Scalar COLOR = new Scalar(130, 255, 255);
+        Moments moments = Imgproc.moments(largestContour);
+        if(moments.get_m00() != 0) {
+            double centroidX = moments.get_m10() / moments.get_m00();
+            double centroidY = moments.get_m01() / moments.get_m00();
+
+            Point centroid = new Point(centroidX, centroidY);
+            Imgproc.circle(frame , centroid , 2 ,COLOR, -1);
         }
 
         Rect box = Imgproc.boundingRect(largestContour);
