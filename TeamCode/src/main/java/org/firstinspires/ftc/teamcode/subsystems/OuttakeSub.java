@@ -16,11 +16,12 @@ public class OuttakeSub {
         block = hardwareMap.get(Servo.class , "block");
 
         outtake.setDirection(DcMotorSimple.Direction.REVERSE);
+        block.setDirection(Servo.Direction.FORWARD);
 
     }
     public void outtake(boolean out){
         if(out){
-            outtake.setPower(0.7);
+            outtake.setPower(1.0);
         }
         else{
             outtake.setPower(0.0);
@@ -28,10 +29,10 @@ public class OuttakeSub {
     }
     public void block(boolean Block){
         if(Block){
-            block.setPosition(0.1);
+            block.setPosition(1.0);
         }
         else{
-            block.setPosition(0);
+            block.setPosition(0.0);
         }
     }
 

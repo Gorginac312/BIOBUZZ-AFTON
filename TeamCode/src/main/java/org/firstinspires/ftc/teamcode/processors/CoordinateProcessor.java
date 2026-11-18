@@ -155,6 +155,7 @@ public class CoordinateProcessor implements VisionProcessor {
         double largestArea = 150;
         for(MatOfPoint contour : contours) {
 
+
             double area = Imgproc.contourArea(contour);
 
             if (area > largestArea) {
