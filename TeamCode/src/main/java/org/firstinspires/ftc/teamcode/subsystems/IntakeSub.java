@@ -19,8 +19,8 @@ public class IntakeSub {
     }
     public void intake(boolean intake){
         if(intake){
-            IntakeOut.setPower(1.0);
-            IntakeIn.setPower(1.0);
+            IntakeOut.setPower(0.2);
+            IntakeIn.setPower(0.2);
         }
         else{
             IntakeOut.setPower(0);
@@ -30,7 +30,7 @@ public class IntakeSub {
     }
     public void ramp(boolean ramp){
         if(ramp){
-            Ramp.setPosition(0.5);
+            Ramp.setPosition(0.1);
         }
         else{
             Ramp.setPosition(0);

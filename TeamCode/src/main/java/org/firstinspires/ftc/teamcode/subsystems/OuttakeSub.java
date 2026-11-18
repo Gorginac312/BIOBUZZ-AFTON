@@ -15,7 +15,7 @@ public class OuttakeSub {
     }
     public void outtake(boolean out){
         if(out){
-            outtake.setPower(0.67);
+            outtake.setPower(0.2);
         }
         else{
             outtake.setPower(0.0);
@@ -23,7 +23,7 @@ public class OuttakeSub {
     }
     public void block(boolean Block){
         if(Block){
-            block.setPosition(0.5);
+            block.setPosition(0.1);
         }
         else{
             block.setPosition(0);
