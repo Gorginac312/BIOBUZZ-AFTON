@@ -1,18 +1,18 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 
-import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
-
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import org.firstinspires.ftc.teamcode.subsystems.ValuesSub;
 public class OuttakeSub {
-    DcMotor outtake;
+    DcMotorEx outtake;
     Servo block;
 
     public OuttakeSub(HardwareMap hardwareMap){
-        outtake = hardwareMap.get(DcMotor.class ,"outtake");
+        outtake = hardwareMap.get(DcMotorEx.class ,"outtake");
         block = hardwareMap.get(Servo.class , "block");
 
         outtake.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -20,22 +20,31 @@ public class OuttakeSub {
 
         outtake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
+        outtake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        outtake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
     }
     public void outtake(boolean out){
+        double OuttakeRPM = (ValuesSub.TargetOuttake * ValuesSub.TicksPerRev)/60;
+
         if(out){
-            outtake.setPower(0.75);
+            outtake.setVelocity(OuttakeRPM);
         }
         else{
-            outtake.setPower(0.0);
+            outtake.setVelocity(0.0);
         }
     }
     public void block(boolean Block){
         if(Block){
-            block.setPosition(0.9);
+            block.setPosition(ValuesSub.BlockOut);
         }
         else{
-            block.setPosition(1.0);
+            block.setPosition(ValuesSub.BlockIn);
         }
+    }
+    public DcMotorEx getMotor() {
+        return outtake;
     }
 
 }

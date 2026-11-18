@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.subsystems.DriveSub;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSub;
 import org.firstinspires.ftc.teamcode.subsystems.OuttakeSub;
+import org.firstinspires.ftc.teamcode.subsystems.ValuesSub;
 
 @TeleOp(name = "TeleopTestB", group = "Vision")
 
@@ -13,6 +14,12 @@ public class TeleopTestB extends OpMode {
     DriveSub drive;
     IntakeSub intake;
     OuttakeSub outtake;
+    double ticksPerSecondOuttake;
+    double currentOuttake;
+    double currentIntakeOut;
+    double ticksPerSecondIntakeOut;
+    double currentIntakeIn;
+    double ticksPerSecondIntakeIn;
     @Override
     public void init() {
     drive = new DriveSub(hardwareMap);
@@ -30,5 +37,16 @@ public class TeleopTestB extends OpMode {
     intake.ramp(gamepad1.left_bumper);
     outtake.outtake(gamepad1.right_trigger > 0.5);
     outtake.block(gamepad1.right_bumper);
+
+        ticksPerSecondOuttake = outtake.getMotor().getVelocity();
+        ticksPerSecondIntakeIn = intake.getMotorIn().getVelocity();
+        ticksPerSecondIntakeOut = intake.getMotorOut().getVelocity();
+        currentOuttake = (ticksPerSecondOuttake * 60) / ValuesSub.TicksPerRev;
+        currentIntakeIn = (ticksPerSecondIntakeIn * 60) / ValuesSub.TicksPerRev;
+        currentIntakeOut = (ticksPerSecondIntakeOut * 60) / ValuesSub.TicksPerRev;
+        telemetry.addData("outtake rpm", currentOuttake);
+        telemetry.addData("IntakeIn rpm" , currentIntakeIn);
+        telemetry.addData("IntakeOut rpm" , currentIntakeOut);
+
     }
 }
