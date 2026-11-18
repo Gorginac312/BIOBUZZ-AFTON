@@ -6,34 +6,34 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class IntakeSub {
-    DcMotor IntakeOut;
-    DcMotor IntakeIn;
-    Servo Ramp;
+    DcMotor intakeout;
+    DcMotor intakein;
+    Servo ramp;
 
     public IntakeSub(HardwareMap hardwareMap){
-        IntakeOut = hardwareMap.get(DcMotor.class ,"IntakeOut");
-        IntakeIn = hardwareMap.get(DcMotor.class , "IntakeIn");
-        Ramp = hardwareMap.get(Servo.class , "Ramp");
+        intakeout = hardwareMap.get(DcMotor.class ,"intakeout");
+        intakein = hardwareMap.get(DcMotor.class , "intakein");
+        ramp = hardwareMap.get(Servo.class , "ramp");
 
 
     }
-    public void intake(boolean intake){
-        if(intake){
-            IntakeOut.setPower(0.2);
-            IntakeIn.setPower(0.2);
+    public void intake(boolean Intake){
+        if(Intake){
+            intakeout.setPower(0.2);
+            intakein.setPower(0.2);
         }
         else{
-            IntakeOut.setPower(0);
-            IntakeIn.setPower(0);
+            intakeout.setPower(0);
+            intakein.setPower(0);
         }
 
     }
-    public void ramp(boolean ramp){
-        if(ramp){
-            Ramp.setPosition(0.1);
+    public void ramp(boolean Ramp){
+        if(Ramp){
+            ramp.setPosition(0.1);
         }
         else{
-            Ramp.setPosition(0);
+            ramp.setPosition(0);
         }
     }
 
