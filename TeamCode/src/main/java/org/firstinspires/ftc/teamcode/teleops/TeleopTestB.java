@@ -1,9 +1,13 @@
 package org.firstinspires.ftc.teamcode.teleops;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
 import org.firstinspires.ftc.teamcode.subsystems.DriveSub;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSub;
 import org.firstinspires.ftc.teamcode.subsystems.OuttakeSub;
+
+@TeleOp(name = "Yellow Vision Test", group = "Vision")
 
 public class TeleopTestB extends OpMode {
     DriveSub drive;
