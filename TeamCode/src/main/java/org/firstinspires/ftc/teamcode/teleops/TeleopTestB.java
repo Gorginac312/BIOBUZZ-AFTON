@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.subsystems.DriveSub;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSub;
 import org.firstinspires.ftc.teamcode.subsystems.OuttakeSub;
 
-@TeleOp(name = "Yellow Vision Test", group = "Vision")
+@TeleOp(name = "TeleopTestB", group = "Vision")
 
 public class TeleopTestB extends OpMode {
     DriveSub drive;
