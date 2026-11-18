@@ -18,10 +18,12 @@ public class OuttakeSub {
         outtake.setDirection(DcMotorSimple.Direction.REVERSE);
         block.setDirection(Servo.Direction.FORWARD);
 
+        outtake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
     }
     public void outtake(boolean out){
         if(out){
-            outtake.setPower(1.0);
+            outtake.setPower(0.75);
         }
         else{
             outtake.setPower(0.0);
@@ -29,10 +31,10 @@ public class OuttakeSub {
     }
     public void block(boolean Block){
         if(Block){
-            block.setPosition(1.0);
+            block.setPosition(0.9);
         }
         else{
-            block.setPosition(0.0);
+            block.setPosition(1.0);
         }
     }
 
