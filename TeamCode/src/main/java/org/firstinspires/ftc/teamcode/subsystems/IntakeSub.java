@@ -19,8 +19,8 @@ public class IntakeSub {
     }
     public void intake(boolean Intake){
         if(Intake){
-            intakeout.setPower(0.2);
-            intakein.setPower(0.2);
+            intakeout.setPower(0.8);
+            intakein.setPower(0.8);
         }
         else{
             intakeout.setPower(0);

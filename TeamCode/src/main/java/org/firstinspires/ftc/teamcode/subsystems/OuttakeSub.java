@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 
+import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 public class OuttakeSub {
@@ -12,10 +15,12 @@ public class OuttakeSub {
         outtake = hardwareMap.get(DcMotor.class ,"outtake");
         block = hardwareMap.get(Servo.class , "block");
 
+        outtake.setDirection(DcMotorSimple.Direction.REVERSE);
+
     }
     public void outtake(boolean out){
         if(out){
-            outtake.setPower(0.2);
+            outtake.setPower(0.7);
         }
         else{
             outtake.setPower(0.0);
