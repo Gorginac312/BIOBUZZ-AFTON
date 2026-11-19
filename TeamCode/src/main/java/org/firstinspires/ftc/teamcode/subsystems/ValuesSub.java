@@ -9,6 +9,8 @@ public class ValuesSub {
     public static double BlockIn = 1.0;
 
     public static double BlockOut= 0.9;
-    public static double RampOut = 0.1;
+    public static double RampOut = 0.3867;
     public static double RampIn = 0.0;
+    public static int UnfoldTicks = 538;
+    public static double UnfoldPower = 0.67;
 }

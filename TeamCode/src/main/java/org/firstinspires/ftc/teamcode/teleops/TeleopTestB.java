@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.subsystems.DriveSub;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSub;
 import org.firstinspires.ftc.teamcode.subsystems.OuttakeSub;
 import org.firstinspires.ftc.teamcode.subsystems.ValuesSub;
+import org.firstinspires.ftc.teamcode.subsystems.UnfoldSub;
 
 @TeleOp(name = "TeleopTestB", group = "Vision")
 
@@ -14,6 +15,7 @@ public class TeleopTestB extends OpMode {
     DriveSub drive;
     IntakeSub intake;
     OuttakeSub outtake;
+    UnfoldSub unfold;
     double ticksPerSecondOuttake;
     double currentOuttake;
     double currentIntakeOut;
@@ -25,10 +27,12 @@ public class TeleopTestB extends OpMode {
     drive = new DriveSub(hardwareMap);
     intake = new IntakeSub(hardwareMap);
     outtake = new OuttakeSub(hardwareMap);
+    unfold = new UnfoldSub(hardwareMap);
     }
 
     @Override
     public void loop() {
+        unfold.unfold();
     drive.drive(-gamepad1.left_stick_y,
                 gamepad1.left_stick_x,
                 gamepad1.right_stick_x,
