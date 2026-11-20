@@ -38,7 +38,8 @@ public class Teleop2P extends OpMode {
                 gamepad1.right_stick_x,
                 gamepad1.left_bumper);
         intake.intake(gamepad1.left_trigger > 0.5);
-        intake.ramp(gamepad1.left_bumper);
+        intake.ramp(gamepad1.right_bumper);
+        intake.Reverse(gamepad1.b);
         outtake.outtake(gamepad2.right_trigger > 0.5);
         outtake.block(gamepad2.right_bumper);
 

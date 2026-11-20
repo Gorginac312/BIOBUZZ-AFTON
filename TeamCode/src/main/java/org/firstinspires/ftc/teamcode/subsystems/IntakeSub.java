@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -10,6 +11,8 @@ public class IntakeSub {
     DcMotorEx intakeout;
     DcMotorEx intakein;
     Servo ramp;
+    int r = 0;
+    boolean lastB = false;
 
     public IntakeSub(HardwareMap hardwareMap){
         intakeout = hardwareMap.get(DcMotorEx.class ,"intakeout");
@@ -43,6 +46,21 @@ public class IntakeSub {
         else{
             ramp.setPosition(ValuesSub.RampIn);
         }
+    }
+    public void Reverse(boolean currentB) {
+        if (currentB && !lastB) {
+            if (r == 0) {
+                intakein.setDirection(DcMotorSimple.Direction.REVERSE);
+                intakeout.setDirection(DcMotorSimple.Direction.REVERSE);
+                r = 1;
+            }
+            else {
+                intakein.setDirection(DcMotorSimple.Direction.FORWARD);
+                intakeout.setDirection(DcMotorSimple.Direction.FORWARD);
+                r = 0;
+            }
+        }
+        lastB = currentB;
     }
     public DcMotorEx getMotorIn() {
         return intakein;

@@ -35,9 +35,10 @@ public class TeleopNoUnfold extends OpMode {
         drive.drive(-gamepad1.left_stick_y,
                 gamepad1.left_stick_x,
                 gamepad1.right_stick_x,
-                gamepad1.left_bumper);
+                false);
         intake.intake(gamepad1.left_trigger > 0.5);
         intake.ramp(gamepad1.left_bumper);
+        intake.Reverse(gamepad1.b);
         outtake.outtake(gamepad1.right_trigger > 0.5);
         outtake.block(gamepad1.right_bumper);
 
